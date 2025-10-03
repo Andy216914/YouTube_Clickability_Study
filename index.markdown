@@ -6,7 +6,7 @@ layout: default
 ---
 
 {% include nav.html %}
-
+{% include sidebar.html %}
 
 ## Proposal Video: {#Video}
 
