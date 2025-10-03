@@ -48,3 +48,8 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - README.md
+
+menu:
+  - {name: 'Project Proposal', url: '/YouTube_Clickability_Study/'}
+  - {name: 'Midterm Checkpoint', url: '/YouTube_Clickability_Study/midterm/'}
+  - {name: 'Final Report', url: '/YouTube_Clickability_Study/final/'}
