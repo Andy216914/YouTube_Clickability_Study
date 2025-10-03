@@ -3,4 +3,32 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
+title: Project Proposal:
 ---
+## Proposal Video:
+
+
+## Introduction/Background:
+
+
+## Problem Definition:
+
+
+## Methods:
+
+
+## (Potential) Results and Discussion: 
+
+
+## References:
+
+
+## Gantt Chart & Contribution Table:
+
+
+## GitHub Repository:
+
+
+## Project Award Eligibility: 
+
+
