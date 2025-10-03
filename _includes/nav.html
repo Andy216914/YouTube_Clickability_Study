@@ -1,8 +1,8 @@
 
 
 
-# The code below creates a horizontal navigation bar with 3 tabs: Project Proposal, Midterm Checkpoint, and Final Report.
-# Format: Project Proposal | Midterm Checkpoint | Final Report
+<!--The code below creates a horizontal navigation bar with 3 tabs: Project Proposal, Midterm Checkpoint, and Final Report.--> 
+<!--Format: Project Proposal | Midterm Checkpoint | Final Report--> 
 <nav class="tabs">
   <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Project Proposal</a>
   <a href="{{ '/midterm/' | relative_url }}" {% if page.url contains '/midterm/' %}class="active"{% endif %}>Midterm Checkpoint</a>
