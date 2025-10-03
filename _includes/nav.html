@@ -1,1 +1,47 @@
 
+
+
+# The code below creates a horizontal navigation bar with 3 tabs: Project Proposal, Midterm Checkpoint, and Final Report.
+# Format: Project Proposal | Midterm Checkpoint | Final Report
+<nav class="tabs">
+  <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Project Proposal</a>
+  <a href="{{ '/midterm/' | relative_url }}" {% if page.url contains '/midterm/' %}class="active"{% endif %}>Midterm Checkpoint</a>
+  <a href="{{ '/final/' | relative_url }}" {% if page.url contains '/final/' %}class="active"{% endif %}>Final Report</a>
+</nav>
+
+# CSS code for decorations of navigation bar
+<style>
+
+nav.tabs {
+  text-align: center;
+  margin: 20px 0;
+}
+  
+nav.tabs a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 8px;
+  text-decoration: none;
+  color: green;  
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f9f9f9;
+  font-weight: 700;
+}
+nav.tabs a.active {
+  background: #0366d6;
+  color: #fff;
+  border-color: #0366d6;
+}
+nav.tabs a:hover {
+  background: #e6f0ff;
+  border-color: #0366d6;
+}
+
+</style>
+
+
+
+
+
+
