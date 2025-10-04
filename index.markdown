@@ -64,7 +64,7 @@ Model performance will be evaluated using classification accuracy, precision, re
 
 ## GitHub Repository: {#GitHub}
 [Click here -> GitHub Repository for this project](https://github.gatech.edu/sjin308/YouTube_Clickability_Study)
-<img src="_images/ContributionChart.png" alt="Proposal Contributions">
+<img src="_images/ContributionChart.jpg" alt="Proposal Contributions">
 
 ## Project Award Eligibility: {#Award}
 We would like to be considered for the “Outstanding Project” award.
