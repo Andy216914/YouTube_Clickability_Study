@@ -31,10 +31,19 @@ Our goal for this study is to develop predictive models that estimate the likeli
 We will use the YouTube Trending Video Dataset from Kaggle, which compiles daily trending videos across multiple regions. The dataset includes features such as titles, thumbnails, genres, views, channels, likes, and dislikes, offering a rich foundation for building predictive models and testing how presentation and contextual factors influence engagement.
 
 ## Proposed Methods: {#Methods}
+The YouTube dataset will be preprocessed to remove duplicates, handle missing values, apply log scaling, and scale numeric features to 0–1 using MinMaxScaler (X_std = (X - X_min) / (X_max - X_min); X_scaled = X_std * (max - min) + min).
 
+
+Text features from titles and descriptions will be tokenized, stopwords removed, converted to TF-IDF vectors, and encoded with Word2Vec embeddings. Additional features include title length, word length, capitalization, numbers, buzzwords, and sentiment (positive, neutral, negative).
+
+
+Image features from thumbnails include color, brightness, saturation histograms, face and text detection, text boldness, and image embeddings capturing style, objects, and layout. PCA will reduce dimensionality, and dense TF-IDF and embedding vectors will be concatenated into a unified dataset for modeling.
+
+
+Supervised learning will explore feedforward neural networks for multimodal and nonlinear relationships, ensemble tree-based models (random forests, histogram-based gradient boosting) for mixed-feature interactions, and baseline models (logistic regression, decision trees) for simpler relationships and feature importance.
 
 ## (Potential) Results and Discussion: {#Results}
-
+Model performance will be evaluated using classification accuracy, precision, recall, F1-score, and ROC-AUC to address class imbalance and ranking capability. We expect baseline models to perform moderately, while gradient-boosted trees and neural networks should achieve higher accuracy. Feature importance analyses will identify which title and thumbnail characteristics most strongly predict engagement. The results aim to be interpretable and actionable for content creators, highlighting ethical considerations such as avoiding incentivizing clickbait while providing insights into engagement patterns.
 
 ## Gantt Chart & Contribution Table: {#Contributions}
 
@@ -53,7 +62,7 @@ We will use the YouTube Trending Video Dataset from Kaggle, which compiles daily
 
 
 ## GitHub Repository: {#GitHub}
-[Link to the GitHub Repository for this project](https://github.gatech.edu/sjin308/YouTube_Clickability_Study)
+[Click here -> GitHub Repository for this project](https://github.gatech.edu/sjin308/YouTube_Clickability_Study)
 
 ## Project Award Eligibility: {#Award}
 We would like to be considered for the “Outstanding Project” award.
