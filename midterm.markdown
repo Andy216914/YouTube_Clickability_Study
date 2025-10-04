@@ -3,4 +3,4 @@ layout: default
 permalink: /midterm/
 ---
 {% include nav.html %}
-{% include sidebar.html %}
+Nothing in here yet!
