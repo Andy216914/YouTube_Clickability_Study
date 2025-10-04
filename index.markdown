@@ -46,7 +46,7 @@ Supervised learning will explore feedforward neural networks for multimodal and 
 Model performance will be evaluated using classification accuracy, precision, recall, F1-score, and ROC-AUC to address class imbalance and ranking capability. We expect baseline models to perform moderately, while gradient-boosted trees and neural networks should achieve higher accuracy. Feature importance analyses will identify which title and thumbnail characteristics most strongly predict engagement. The results aim to be interpretable and actionable for content creators, highlighting ethical considerations such as avoiding incentivizing clickbait while providing insights into engagement patterns.
 
 ## Gantt Chart & Contribution Table: {#Contributions}
-
+[Click here -> Gantt Chart](https://docs.google.com/spreadsheets/d/1y-I8I2sqUG6IM8JgbNB582FVOKyg1I9ms89l9MGjOCo/edit?usp=sharing\))
 
 ## References: {#References}
 [1] G. Chatzopoulou, C. Sheng, and M. Faloutsos, “A first step towards understanding popularity in YouTube,” 2010 INFOCOM IEEE Conference on Computer Communications Workshops, Mar. 2010. doi:10.1109/infcomw.2010.5466701 
