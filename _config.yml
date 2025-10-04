@@ -18,8 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Predicting YouTube Video Engagement from Title and Thumbnail Features
-description: ""
+title: YouTube Video Engagement Prediction
+description: "CS 4641 – Fall 2025 – Group 7"
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
