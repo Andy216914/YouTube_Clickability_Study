@@ -48,6 +48,7 @@ Model performance will be evaluated using classification accuracy, precision, re
 
 ## Gantt Chart & Contribution Table: {#Contributions}
 [Click here -> Gantt Chart](https://docs.google.com/spreadsheets/d/1y-I8I2sqUG6IM8JgbNB582FVOKyg1I9ms89l9MGjOCo/edit?usp=sharing\)
+<img src="/sjin308/YouTube_Clickability_Study/blob/main/_images/ContributionChart.jpg?raw=true" alt="Proposal Contributions">
 
 ## References: {#References}
 [1] G. Chatzopoulou, C. Sheng, and M. Faloutsos, “A first step towards understanding popularity in YouTube,” 2010 INFOCOM IEEE Conference on Computer Communications Workshops, Mar. 2010. doi:10.1109/infcomw.2010.5466701 
@@ -64,7 +65,6 @@ Model performance will be evaluated using classification accuracy, precision, re
 
 ## GitHub Repository: {#GitHub}
 [Click here -> GitHub Repository for this project](https://github.gatech.edu/sjin308/YouTube_Clickability_Study)
-<img src="/sjin308/YouTube_Clickability_Study/blob/main/_images/ContributionChart.jpg?raw=true" alt="Proposal Contributions">
 
 ## Project Award Eligibility: {#Award}
 We would like to be considered for the “Outstanding Project” award.
