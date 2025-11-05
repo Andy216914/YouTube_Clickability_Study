@@ -4,3 +4,16 @@ _site
 .jekyll-metadata
 vendor
 Gemfile.lock
+
+# data artifacts
+data/interim/
+data/processed/
+outputs/
+
+# notebooks
+.ipynb_checkpoints/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.tmp
