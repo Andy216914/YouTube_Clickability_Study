@@ -95,10 +95,10 @@ Feature importance analysis revealed that:
 * Textual TF-IDF features contributed smalelr but meaningful signals, suggesting that specific words may increase visibility or curiosity
 
 ### Classification Performance
-| **Model**           | **Accuracy** | **Precision** | **Recall** | **F1** | **ROC-AUC** |
-| ------------------- | ------------ | ------------- | ---------- | ------ | ----------- |
-| Logistic Regression | 0.75         | 0.00          | 0.00       | 0.00   | 0.80        |
-| Random Forest       | 0.81         | 0.71          | 0.42       | 0.53   | 0.86        |
+| Model              | Accuracy | Precision | Recall | F1   | ROC-AUC |
+|---                 |---       |---        |---     |---   |---      |
+| Logistic Regression| 0.75     | 0.00      | 0.00   | 0.00 | 0.80    |
+| Random Forest      | 0.81     | 0.71      | 0.42   | 0.53 | 0.86    |
 
 The Random Forest Classifier achieved the best overall balance, with 81% accuracy and an AUC of 0.86, demonstrating strong ability to distinguish high- vs low-performing videos. 
 
