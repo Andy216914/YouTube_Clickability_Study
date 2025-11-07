@@ -63,7 +63,7 @@ Each model was trained with an 80/20 train-test split (random_state = 42) to ens
 ## Results and Discussion {#Results}
 ### Regression Performance
 | **Model**                | **R²** | **MAE** | **RMSE** |
-| ------------------------ | ------ | ------- | -------- |
+|---                       |---     |---      |---       |
 | Linear (Structured)      | 0.024  | 14.73   | 43.49    |
 | Random Forest (Combined) | 0.257  | 10.04   | 37.96    |
 | XGBoost (Combined)       | 0.258  | 10.16   | 37.93    |
