@@ -53,3 +53,7 @@ menu:
   - {name: 'Project Proposal', url: '/YouTube_Clickability_Study/'}
   - {name: 'Midterm Checkpoint', url: '/YouTube_Clickability_Study/midterm/'}
   - {name: 'Final Report', url: '/YouTube_Clickability_Study/final/'}
+
+markdown: kramdown
+kramdown:
+  input: GFM
