@@ -48,13 +48,13 @@ This combination enabled our models to learn relationships between structured si
 
 ### Modeling Approach
 We implemented and compared five supervised models:
-| **Task**       | **Model**                | **Purpose**                                       |
-| -------------- | ------------------------ | ------------------------------------------------- |
-| Regression     | Linear Regression        | Baseline for interpretability and linear patterns |
-| Regression     | Random Forest Regressor  | Captures nonlinear and interaction effects        |
-| Regression     | XGBoost Regressor        | Gradient-boosted refinement for tabular data      |
-| Classification | Logistic Regression      | Linear baseline                                   |
-| Classification | Random Forest Classifier | Balances precision, recall, and interpretability  |
+| **Task** | **Model** | **Purpose** |
+|-----------|------------|-------------|
+| Regression | Linear Regression | Baseline for interpretability and linear patterns |
+| Regression | Random Forest Regressor | Captures nonlinear and interaction effects |
+| Regression | XGBoost Regressor | Gradient-boosted refinement for tabular data |
+| Classification | Logistic Regression | Linear baseline |
+| Classification | Random Forest Classifier | Balances precision, recall, and interpretability |
 
 Each model was trained with an 80/20 train-test split (random_state = 42) to ensure consistent comparisons.
 
