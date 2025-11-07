@@ -89,9 +89,11 @@ In our upcoming project phase we will test whether incorporating thumbnail visua
 *Figure 2. Top 10 feature importances from the Random Forest Regressor.*
 
 Feature importance analysis revealed that:
-* Subscriber count overwhelmingly dominates predictive power, consistent with Bärtl [3]'s findings about structural importance
-* Sentiment and capitalization ratio emerged as secondary predictors: positive, clearly written titles slightly improve performance
-* Textual TF-IDF features contributed smalelr but meaningful signals, suggesting that specific words may increase visibility or curiosity
+* Subscriber count overwhelmingly dominates predictive power, consistent with Bärtl [3]'s findings
+* Sentiment and capitalization ratio emerged as secondary predictors, suggesting positive, clearly written titles slightly improve performance
+* Textual TF-IDF features contributed smaller but meaningful signals, suggesting that specific words may increase visibility or curiosity
+
+Dimensionality reduction on the TF-IDF title features revealed several coherent latent patterns. For example, one component emphasized words such as "trailer," "season," "video," and "HD," corresponding to streaming and media-related titles. Another component featured "official video," "live," "Christmas," and "Valentine’s Day," representing music or event-themed uploads. Other components highlighted clusters such as "react," "review," "people," and "things," characteristic of reaction or commentary videos, and "Super Bowl," "commercial," "Trump," and "Black Panther," capturing event-driven or trending topics. These groupings suggest that the TF-IDF components learned meaningful linguistic structures from YouTube titles, revealing distinct genres and content strategies that align with intuitive video categories.
 
 ### Classification Performance
 {% capture m %}
@@ -112,7 +114,7 @@ Lower recall (0.42) indicates some high-performing titles are missed, likely due
 *Figure 3. ROC curve of Random Forest classifier, showing strong discriminative ability (AUC = 0.86).*
 
 ### Interpretation
-Across models, the findings support our central hypothesis that title characteristics combined with channel metadata can predict relative engagement potential. However, the dominace of the subscribers feature highlights that success is heavily conditioned by existing audience reach, with title wording contributing a secondary, but stil measurable, effect. These insights align with prior research on algorithmic amplification and audience dynamics, suggesting that creators with established followings benefit more from metadata optimization than new creators.
+Across models, the findings support our central hypothesis that title characteristics combined with channel metadata can predict relative engagement potential. However, the dominace of the subscribers feature highlights that success is heavily conditioned by existing audience reach, with title wording contributing a secondary, but stil measurable, effect. These insights align with prior research on algorithmic amplification and audience dynamics, suggesting that creators with established followings benefit more from metadata optimization than new creators. It's important to remember video titles are not the only factor contributing to views, so we should not expect perfect predictive ability based solely on that input, but rather we can evaluate to what extent titles have an impact and how that impact can be maximized.
 
 ## Next Steps
 1. Integrate Thumbnail Analysis
