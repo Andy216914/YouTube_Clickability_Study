@@ -6,36 +6,35 @@ permalink: /midterm/
 
 ## Introduction and Literature Review {#Introduction}
 
-The success of a YouTube video depends heavily on its ability to capture audience attention quickly, as early engagement plays a decisive role in how the platform's recommendation system promotes content. Previous research has highlighted that early viewership dynamics, discovery algorithms, and creator-level factors interact in complex ways to determine a video's reach. Chatzopoulou, Sheng, and Faloutsos [1] found that early viewers are the most likely to engage, as the probability of likes, comments, or interactions declines with increasing view count, highlighting the temporal dynamics of audience behavior. Zhou et al. [2] examined YouTube’s discovery mechanisms, including keyword search, homepage recommendations, and event-driven highlights, and identified a “rich-get-richer” effect, in which initial traction compounds visibility across multiple recommendation pathways. Bärtl [3] analyzed channels and uploads over ten years, demonstrating that audience size, channel age, and genre strongly influence long-term video success, emphasizing the role of structural, channel-level factors.
-
+The success of a YouTube video depends heavily on its ability to capture audience attention quickly, as early engagement plays a decisive role in how the platform's recommendation system promotes content. Previous research has highlighted that early viewership dynamics, discovery algorithms, and creator-level factors are combined in complex ways to determine a video's reach. Chatzopoulou, Sheng, and Faloutsos [1] found that early viewers are the most likely to engage, as the probability of likes, comments, or interactions declines with increasing view count, highlighting the temporal dynamics of audience behavior. Zhou et al. [2] examined YouTube’s discovery mechanisms, including keyword search, homepage recommendations, and event-driven highlights, and identified a “rich-get-richer” effect, in which initial traction compounds visibility across multiple recommendation pathways. Bärtl [3] analyzed channels and uploads over ten years, demonstrating that audience size, channel age, and genre strongly influence long-term video success, emphasizing the role of structural, channel-level factors.
 
 Together, these studies indicate that YouTube popularity arises from a combination of audience behavior, platform algorithms, and creator characteristics. Early engagement patterns [1] drive disproportionate interaction, recommendation systems [2] amplify visibility, and channel-level features [3] condition overall success. These complementary insights provide a foundation for predictive modeling, highlighting the need to consider both presentation-level features and contextual metadata when estimating engagement.
 
-
-Building on these findings, our project investigates whether *presentation-level* features, especially video title and thumbnail, combined with *contextual* factors like channel size can predict engagement outcomes. We focus on modeling _clickability_, operationalize as *views per subscriber*, as a normalized and interpretable measure of how effectively a title and metadata convert audience size into views. The ultimate aim is to identify which textual and structural patterns most strongly correlate with success, providing actionable insights for content optimization. In the next sage of our project, we will extend this framework beyond textual and metadata features to include visual analysis of thumbnails, allowing us to evluate how presentation style and imagery contribute to clickability.
+Building on these findings, our project investigates whether *presentation-level* features, especially video title and thumbnail, combined with *contextual* factors like channel size can predict engagement outcomes. We focus on modeling clickability, in the form of *views per subscriber*, as a normalized and interpretable measure of how effectively a title and metadata convert audience size into views. The ultimate aim is to identify which textual and structural patterns most strongly correlate with success, providing insights for content optimization. In the next stage of our project, we will extend this framework beyond textual and metadata features to include visual analysis of thumbnails, allowing us to evluate how presentation style and imagery contribute to clickability.
 
 ## Problem Definition {#Problem}
 Our study address the question:
+
 *Can we predict the relative clickability of a YouTube video based on its title, thumbnail, and channel metadata?*
 
-To approach thins, we formulated two tasks:
+We approached this in two ways:
 1. **Regression:** Predict a continuous *views per subscriber* metric to quantify engagement potential
 2. **Classification:** Categorize videos into *high* or *low* clickability classes based on whether they exceed the dataset's median performance
 
-This dual approach allows us to measure both the absolute predictive accuracy of our models (via R^2 and error metrics) and their discriminative power in identifying standout titles (via precision, recall, and ROC-AUC).
+This dual approach allows us to measure both the absolute predictive accuracy of our models (via R<sup>2</sup> and error metrics) and their discriminative power in identifying standout titles (via precision, recall, and ROC-AUC).
 
 ## Methods {#Methods}
 ### Data and Preprocessing
-We used the YouTube Trending Videos dataset from Kaggle, which includes metadata for thousands of trending uploads. After cleaning and filtering, our processed dataset contained 5,742 videos.
+We used the YouTube Trending Videos dataset from Kaggle, which includes metadata for thousands of trending videos. We then preprocessed this data by converting some values to numeric types and dropping rows missing important values. Our original dataset didn't include a column for subscriber counts, so we found a neraly identical dataset, containing similar (but additional) information about the same videos from the same timeframe, and we merged that dataset's subscriber column into our original dataset. We then dudplicated it by removing rows dedicated to the same video at older timestamps, computed the *views per subscriber* value for each video, filtered out outliers, and log transformed these values. After cleaning and filtering, our processed dataset contained 5,742 videos.
 
-Structured numeric and categorical features included:
+Following preprocessing, additional features were engineered to capture presentation and linguistic characteristics of each video title. These numeric and categorical features included:
 
 * subscribers (channel size)
-* title_length, avg_word_len, caps_ratio
+* title_length, word_count, avg_word_len, caps_ratio
 * sentiment_vader (title sentiment polarity)
 * punctuation identifiers (presence of "?", "!", or digits)
-  
-In addition, textual features were extracted using TF-IDF vectorization, capturing the 50 most informative terms from video titles. The target variable *views_per_subscriber* was lightly clipped and scaled to mitigate the influence of extreme viral outliers while preserving meaningful variation. 
+
+In addition, textual features were extracted using TF-IDF vectorization, capturing the 50 most informative components of terms from video titles. 
 
 ### Feature Engineering
 To standardize inputs across feature types:
@@ -58,12 +57,12 @@ We implemented and compared five supervised models:
 | Classification   | Logistic Regression       | Linear baseline                                         |
 | Classification   | Random Forest Classifier  | Balances precision, recall, and interpretability        |
 
-Each model was trained with an 80/20 train-test split (random_state = 42) to ensure consistent comparisons.
+Each model was trained with an 80/20 train-test split with a fixed random seed (random_state = 42) to ensure consistent comparisons.
 
 ## Results and Discussion {#Results}
 ### Regression Performance
 {% capture m %}
-| **Model** | **R^2** | **MAE** | **RMSE** |
+| **Model** | **R<sup>2</sup>** | **MAE** | **RMSE** |
 |---|---|---|---|
 | Linear (Structured) | 0.024 | 14.73 | 43.49 |
 | Random Forest (Combined) | 0.257 | 10.04 | 37.96 |
@@ -71,13 +70,13 @@ Each model was trained with an 80/20 train-test split (random_state = 42) to ens
 {% endcapture %}
 {{ m | markdownify }}
 
-Both the Random Forest and XGBoost Regressors achieved an R^2 of approximately 0.26, explaining over one-quarter of the variance in video clickability - a strong result given the inherent noise and external factors influencing YouTube viewership. 
+Both the Random Forest and XGBoost Regressors achieved an R<sup>2</sup> of approximately 0.26, explaining over one-quarter of the variance in video clickability - a strong result given the inherent noise and many external factors influencing YouTube video viewership. 
 
 The MAE of ~10 views per subscriber indicates reasonably tight predictions around actual performance.
 
 Linear Regression, by constrast, performed poorly, reinforcing that title-success relationships are nonlinear and feature interactions matter.
 
-These findings motivate our upcoming project phase, in which we will test whether incorporating thumbnail visual features improves model performance beyond the current text-and-metadata baseline. 
+In our upcoming project phase we will test whether incorporating thumbnail visual features improves model performance beyond the current text-and-metadata baseline. 
 
 ![image](https://github.gatech.edu/user-attachments/assets/fd2c8b2f-0590-4318-a0ac-deb4f7804288)
 
