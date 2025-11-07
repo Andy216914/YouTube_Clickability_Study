@@ -109,7 +109,7 @@ The Random Forest Classifier achieved the best overall balance, with 81% accurac
 High precision (0.71) suggests that when the model predicts a video will perform well, it is usually correct. This is an important property if this system were used as a recommender or content optimization assistant.
 Lower recall (0.42) indicates some high-performing titles are missed, likely due to natural class imbalance.
 
-![image](https://github.gatech.edu/user-attachments/assets/4099b6f5-815a-43f2-a8bb-da8a34e78927)
+![image](https://github.gatech.edu/user-attachments/assets/f78dc157-3a3a-4414-80cb-b65d7aaf3ef9)
 
 *Figure 3. ROC curve of Random Forest classifier, showing strong discriminative ability (AUC = 0.86).*
 
