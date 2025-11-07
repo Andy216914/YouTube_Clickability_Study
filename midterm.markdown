@@ -48,23 +48,23 @@ This combination enabled our models to learn relationships between structured si
 
 ### Modeling Approach
 We implemented and compared five supervised models:
-**| Task | Model | Purpose |
-|----------|----------|----------|
-| Regression      | Linear Regression        | Baseline for interpretability and linear patterns  |
-| Regression      | Random Forest Regressor  | Captures nonlinear and interaction effects  |
-| Regression      | XGBoost Regressor        | Gradient-boosted refinement for tabular data |
-| Classification  | Logistic Regression      | Linear baseline |
-| Classification  | Random Forest Classifier | Balances precision, recall, and interpretability |**
+| **Task**       | **Model**                | **Purpose**                                       |
+| -------------- | ------------------------ | ------------------------------------------------- |
+| Regression     | Linear Regression        | Baseline for interpretability and linear patterns |
+| Regression     | Random Forest Regressor  | Captures nonlinear and interaction effects        |
+| Regression     | XGBoost Regressor        | Gradient-boosted refinement for tabular data      |
+| Classification | Logistic Regression      | Linear baseline                                   |
+| Classification | Random Forest Classifier | Balances precision, recall, and interpretability  |
 
 Each model was trained with an 80/20 train-test split (random_state = 42) to ensure consistent comparisons.
 
 ## Results and Discussion {#Results}
 ### Regression Performance
-**| Model | R^2 | MAE | RMSE |
-|----------|----------|----------|----------|
-| Linear (Structured)      | 0.024  | 14.73 | 43.49 |
-| Random Forest (Combined) | 0.257  | 10.04 | 37.96 |
-| XGBoost (Combined)       | 0.258  | 10.16 | 37.93 |**
+| **Model**                | **R²** | **MAE** | **RMSE** |
+| ------------------------ | ------ | ------- | -------- |
+| Linear (Structured)      | 0.024  | 14.73   | 43.49    |
+| Random Forest (Combined) | 0.257  | 10.04   | 37.96    |
+| XGBoost (Combined)       | 0.258  | 10.16   | 37.93    |
 
 Both the Random Forest and XGBoost Regressors achieved an R^2 of approximately 0.26, explaining over one-quarter of the variance in video clickability - a strong result given the inherent noise and external factors influencing YouTube viewership. 
 
@@ -90,10 +90,10 @@ Feature importance analysis revealed that:
 * Textual TF-IDF features contributed smalelr but meaningful signals, suggesting that specific words may increase visibility or curiosity
 
 ### Classification Performance
-**| Model | Accuracy | Precision | Recall | F1 | ROC-AUC | 
-|----------|----------|----------|----------|
-| Logistic Regression | 0.75 | 0.00 | 0.00 | 0.00 | 0.80 |
-| Random Forest       | 0.81 | 0.71 | 0.42 | 0.53 | 0.86 |**
+| **Model**           | **Accuracy** | **Precision** | **Recall** | **F1** | **ROC-AUC** |
+| ------------------- | ------------ | ------------- | ---------- | ------ | ----------- |
+| Logistic Regression | 0.75         | 0.00          | 0.00       | 0.00   | 0.80        |
+| Random Forest       | 0.81         | 0.71          | 0.42       | 0.53   | 0.86        |
 
 The Random Forest Classifier achieved the best overall balance, with 81% accuracy and an AUC of 0.86, demonstrating strong ability to distinguish high- vs low-performing videos. 
 
