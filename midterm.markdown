@@ -66,7 +66,7 @@ Each model was trained with an 80/20 train-test split (random_state = 42) to ens
 |---------------------------|--------|---------|----------|
 | Linear (Structured)       | 0.024  | 14.73   | 43.49    |
 | Random Forest (Combined)  | 0.257  | 10.04   | 37.96    |
-| XGBoost (Combined)        | 0.258  | 10.16   | 37.93    |
+| XGBoost (Combined)        | 0.258  | 10.16   | 37.93    | fix
 
 Both the Random Forest and XGBoost Regressors achieved an R^2 of approximately 0.26, explaining over one-quarter of the variance in video clickability - a strong result given the inherent noise and external factors influencing YouTube viewership. 
 
