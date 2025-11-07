@@ -130,7 +130,7 @@ Across models, the findings support our central hypothesis that title characteri
 
 ## Gantt Chart & Contribution Table: {#Contributions}
 [Click here -> Gantt Chart](https://docs.google.com/spreadsheets/d/1ks7QSZOliQQ410aY5oCGphUX07czt0Q8Edpbw5tmB1A/edit?usp=sharing)
-<img src="/sjin308/YouTube_Clickability_Study/blob/main/_images/ContributionChart.jpg?raw=true" alt="Proposal Contributions">
+<img src="/sjin308/YouTube_Clickability_Study/blob/main/_images/miterm_report_contributions.jpg?raw=true" alt="Proposal Contributions">
 
 ## References: {#References}
 [1] G. Chatzopoulou, C. Sheng, and M. Faloutsos, “A first step towards understanding popularity in YouTube,” 2010 INFOCOM IEEE Conference on Computer Communications Workshops, Mar. 2010. doi:10.1109/infcomw.2010.5466701 
