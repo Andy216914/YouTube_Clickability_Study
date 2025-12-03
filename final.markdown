@@ -290,13 +290,13 @@ A branch-and-fusion multimodal DNN was designed:
 Two supervised models were trained independently:
 
 **Classification Model**
-- **Objective:** predict `high_clickability` (0/1)
+- **Objective:** predict high clickability (0/1)
 - **Metrics:** AUC, Accuracy, F1, Precision, Recall
 ![image](https://github.gatech.edu/user-attachments/assets/0ae0f1d4-f9a8-4d36-af9f-c075b233e2f6)
 ![image](https://github.gatech.edu/user-attachments/assets/62153adc-6887-4b36-bbe2-e902a500dfdd)
 
 **Regression Model**
-- **Objective:** predict `views_per_subscriber` (continuous)
+- **Objective:** predict views per subscriber (continuous)
 - **Metrics:** RMSE, MAE, R²
 ![image](https://github.gatech.edu/user-attachments/assets/8f1e6f35-33fb-4a94-80bd-374b363f7157)
 
