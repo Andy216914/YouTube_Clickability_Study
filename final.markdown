@@ -263,6 +263,28 @@ Overall, HistGradientBoosting provides the best balance for practical use, espec
 Across both tasks, all nonlinear models (Random Forest, XGBoost, and HistGradientBoosting) substantially outperform linear baselines. Random Forest provides the best interpretability through feature importance, XGBoost provides slightly better regression accuracy, and HistGradientBoosting provides the strongest and most balanced classification performance. Linear methods fail to capture nonlinear linguistic patterns, while tree-based ensembles consistently model these interactions. The deep multimodal network is expected to outperform all traditional models once fully trained due to richer semantic and visual representation learning.
 
 ---
+# Deep neural networks
+![image](https://github.gatech.edu/user-attachments/assets/0ae0f1d4-f9a8-4d36-af9f-c075b233e2f6)
+![image](https://github.gatech.edu/user-attachments/assets/8f1e6f35-33fb-4a94-80bd-374b363f7157)
+**Purpose:**  
+Deep neural networks (DNNs) were used to model the complex relationships between structured features, text features, and image features, enabling the system to learn how multiple modalities jointly influence video clickability.
+
+**Architecture:**  
+A branch-and-fusion multimodal DNN was designed:
+- Each modality is processed by its own branch consisting of fully connected layers with BatchNorm, LeakyReLU activations, and Dropout.
+- The structured branch handles handcrafted and semantic features.
+- The text branch processes Sentence-BERT embeddings (compressed with PCA).
+- The image branch processes CLIP or ResNet50 embeddings (also PCA-compressed) plus visual metadata.
+- Outputs from the three branches are concatenated and passed through additional dense layers to produce the final prediction.
+
+**Feature Inputs:**  
+- **Structured:** Handcrafted linguistic features, VADER sentiment, TextBlob sentiment, readability, emoji count, punctuation intensity.  
+- **Text:** Sentence-BERT semantic embeddings reduced to 128 dimensions with PCA.  
+- **Image:** CLIP or ResNet50 embeddings reduced with PCA, plus brightness, saturation, face count, and text density.
+
+**Training:**  
+Models were implemented in PyTorch using a 70/15/15 stratified train/validation/test split. Regularization included Dropout, BatchNorm, LeakyReLU, and weight decay. Optimization used Adam with early stopping based on validation performance.
+
 
 
 
