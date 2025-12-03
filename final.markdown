@@ -263,7 +263,7 @@ Overall, HistGradientBoosting provides the best balance for practical use, espec
 Across both tasks, all nonlinear models (Random Forest, XGBoost, and HistGradientBoosting) substantially outperform linear baselines. Random Forest provides the best interpretability through feature importance, XGBoost provides slightly better regression accuracy, and HistGradientBoosting provides the strongest and most balanced classification performance. Linear methods fail to capture nonlinear linguistic patterns, while tree-based ensembles consistently model these interactions. The deep multimodal network is expected to outperform all traditional models once fully trained due to richer semantic and visual representation learning.
 
 ---
-# Deep neural networks
+### Deep neural networks
 ![image](https://github.gatech.edu/user-attachments/assets/0ae0f1d4-f9a8-4d36-af9f-c075b233e2f6)
 ![image](https://github.gatech.edu/user-attachments/assets/8f1e6f35-33fb-4a94-80bd-374b363f7157)
 **Purpose:**  
