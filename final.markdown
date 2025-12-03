@@ -51,27 +51,121 @@ Finally, to capture deeper linguistic patterns, we applied **TF-IDF vectorizatio
 
 
 ### Feature Engineering
-To standardize inputs across feature types:
 
-* Numeric features were scaled using StandardScaler
-* Text features were processed through TF-IDF with a maximum of 50 components
-* Both sets were concatenated into a single feature matrix
+Our feature engineering pipeline evolved substantially from the earlier version to support multimodal learning across structured text, full-text metadata, and thumbnail images. The final system generates three independent feature matrices:
 
-This combination enabled our models to learn relationships between structured signals (e.g., sentiment, length) and unstructured linguistic cues (specific keywords and phrasing). In the next phase of this project, we will integrate computer vision-based thumbnail features, such as brightness, contrast, color balance, and object presence, extracted via pre-trained convolutional neural networks (CNNs) to capture visual patterns that may contribute to engagement.
+---
+
+#### **1. Structured Features (Traditional + Deep Features)**  
+We compute two sets of structured features:
+
+**Traditional Structured Features (8 dims)**  
+These capture linguistic style and channel-level properties:  
+- `title_length` (character count)  
+- `word_count` (number of words)  
+- `caps_ratio` (uppercase proportion)  
+- `avg_word_len`  
+- `has_question`, `has_exclamation`, `has_number`  
+- `sentiment_vader` (compound sentiment score)  
+
+**Deep Structured Features (13 dims)**  
+To enrich linguistic nuance, we add:  
+- `sentiment_tb` (TextBlob polarity)  
+- `readability` (Flesch Reading Ease)  
+- `emoji_count`  
+- `punctuation_intensity`
+
+These features capture emotional tone, urgency, writing complexity, and stylistic elements that may influence engagement.
+
+---
+
+#### **2. Text Features**  
+We use two different text representations depending on the model family:
+
+**Traditional Models (TF-IDF + SVD → 50 dims)**  
+- Concatenate title + tags + description  
+- Vectorize via TF-IDF (1,000 max features)  
+- Reduce to 50 dimensions using Truncated SVD  
+This preserves 85–90% of variance while remaining computationally efficient.
+
+**Deep Models (Sentence-BERT + PCA → 128 dims)**  
+- Encode text using the `all-mpnet-base-v2` Sentence-BERT model  
+- Produce 768-dimensional semantic embeddings  
+- Reduce to 128 dimensions using PCA (>95% variance retained)  
+S-BERT embeddings capture deep semantic structure, synonym similarity, sentiment flow, and topic coherence—far beyond TF-IDF capabilities.
+
+---
+
+#### **3. Image Features**  
+Thumbnail features are extracted using two approaches:
+
+**Traditional Models (ResNet50 + PCA → 50 dims)**  
+- Download thumbnails (hqdefault.jpg, 224×224)  
+- Extract 2,048-dim features using pretrained ResNet50  
+- Reduce to 50 dims using PCA (~80% variance retained)
+
+**Deep Models (CLIP + Visual Metadata + PCA → 128 dims)**  
+- Encode thumbnails with CLIP ViT-B/32 (768-dim features)  
+- Add interpretable visual metadata:  
+  - Brightness  
+  - Saturation  
+  - Face count  
+  - Text density  
+- Reduce the combined 772 dims to 128 using PCA  
+CLIP produces semantically rich features aligned with natural language, improving multimodal fusion.
+
+---
 
 ### Modeling Approach
 
-We implemented and compared five supervised models:
+We evaluate both traditional ML models and a full multimodal deep learning model.
 
-| **Task**         | **Model**                 | **Purpose**                                             |
-|------------------|---------------------------|---------------------------------------------------------|
-| Regression       | Linear Regression         | Baseline for interpretability and linear patterns       |
-| Regression       | Random Forest Regressor   | Captures nonlinear and interaction effects              |
-| Regression       | XGBoost Regressor         | Gradient-boosted refinement for tabular data            |
-| Classification   | Logistic Regression       | Linear baseline                                         |
-| Classification   | Random Forest Classifier  | Balances precision, recall, and interpretability        |
+---
 
-Each model was trained with an 80/20 train-test split with a fixed random seed (random_state = 42) to ensure consistent comparisons.
+#### **Traditional Machine Learning Models**
+
+All structured, text, and image features are concatenated and split using an 80/20 train-test split. A `StandardScaler` fit on the training data is applied uniformly across all subsets.
+
+We train the following models:
+
+| **Task**         | **Model**                   | **Purpose**                                                           |
+|------------------|-----------------------------|-----------------------------------------------------------------------|
+| Regression       | Linear Regression           | Baseline interpretability; detects linear relationships               |
+| Regression       | Random Forest Regressor     | Captures nonlinear interactions; robust to noise                      |
+| Regression       | XGBoost Regressor           | Gradient-boosting for tabular optimization and high predictive power |
+| Classification   | Logistic Regression         | Baseline classifier with interpretable weights                        |
+| Classification   | Random Forest Classifier    | Ensemble model balancing precision, recall, and interpretability      |
+
+These serve as benchmarks against which we compare our deep multimodal architecture.
+
+---
+
+### Deep Learning Pipeline
+
+#### **Deep Feature Engineering **  
+We generate Sentence-BERT text embeddings, CLIP image embeddings, and expanded structured features, each compressed with PCA to ensure stability and efficiency.
+
+---
+
+#### **Multimodal Deep Neural Network**  
+We use a branch-and-fusion architecture:
+
+- **Structured branch:** 13 → 32  
+- **Text branch:** 128 → 64 → 32  
+- **Image branch:** 128 → 64 → 32  
+- **Fusion:** Concatenate (96) → 96 → 48 → 1  
+
+Each layer uses BatchNorm, LeakyReLU, and Dropout for stability and regularization.
+
+**Classification**: trained with BCEWithLogitsLoss  
+**Regression**: trained with MSELoss  
+
+Training uses a 70/15/15 stratified split, Adam optimizer, and early stopping based on validation AUC (classification) or RMSE (regression).
+
+
+
+
+
 
 ## Results and Discussion {#Results}
 ### Regression Performance
