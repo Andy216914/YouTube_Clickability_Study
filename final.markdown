@@ -278,7 +278,7 @@ A branch-and-fusion multimodal DNN was designed:
 **Feature Inputs:**  
 - **Structured:** Handcrafted linguistic features, VADER sentiment, TextBlob sentiment, readability, emoji count, punctuation intensity.  
 - **Text:** Sentence-BERT semantic embeddings reduced to 128 dimensions with PCA.  
-- **Image:** CLIP or ResNet50 embeddings reduced with PCA, plus brightness, saturation, face count, and text density.
+- **Image:** CLIP embeddings reduced with PCA, plus brightness, saturation, face count, and text density.
 
 **Training Setup**
 - **Framework:** PyTorch
