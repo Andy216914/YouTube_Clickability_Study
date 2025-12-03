@@ -26,30 +26,30 @@ This dual approach allows us to measure both the absolute predictive accuracy of
 The overarching goal is to develop predictive models that can forecast these engagement metrics based solely on intrinsic video characteristics (thumbnail, title, description, tags, channel popularity), enabling content creators to optimize their uploads and platforms to predict which content will resonate with audiences.
 ## Methods {#Methods}
 ### Data and Preprocessing
-Our project began with raw YouTube data sourced from two closely related datasets: the main YouTube US Trending Videos dataset containing detailed video metadata, and a supplementary dataset providing channel subscriber counts. Because the original trending dataset did not include subscriber information, we merged the two sources using a left join on \texttt{video\_id}, allowing us to retain all videos while bringing in subscriber data wherever available. Missing subscriber values were then imputed using channel-level averages, leveraging the assumption that a channel’s subscriber count remains relatively stable over short time periods.
 
-Before merging, both datasets underwent systematic preprocessing. We inspected the data structure and selected core analytical columns such as \texttt{video\_id}, \texttt{title}, \texttt{channel\_title}, \texttt{views}, \texttt{likes}, \texttt{dislikes}, \texttt{comment\_count}, \texttt{publish\_time}, \texttt{tags}, \texttt{description}, and \texttt{thumbnail\_link}. Numeric fields were cleaned using \texttt{pandas.to\_numeric()} with coercion to gracefully handle malformed entries, while timestamps were parsed into proper datetime formats to support any future temporal analysis. Rows missing critical values were dropped to maintain dataset reliability.
+Our project began with raw YouTube data sourced from two closely related datasets: the main YouTube US Trending Videos dataset containing detailed video metadata, and a supplementary dataset providing channel subscriber counts. Because the original trending dataset did not include subscriber information, we merged the two sources using a left join on `video_id`, allowing us to retain all videos while bringing in subscriber data wherever available. Missing subscriber values were then imputed using channel-level averages, leveraging the assumption that a channel’s subscriber count remains relatively stable over short time periods.
 
-To address duplicate video entries appearing at multiple timestamps, we deduplicated the dataset by keeping only the row with the highest view count for each \texttt{video\_id}. After all cleaning, merging, and filtering steps, we obtained a final dataset of 5{,}905 videos.
+Before merging, both datasets underwent systematic preprocessing. We inspected the data structure and selected core analytical columns such as `video_id`, `title`, `channel_title`, `views`, `likes`, `dislikes`, `comment_count`, `publish_time`, `tags`, `description`, and `thumbnail_link`. Numeric fields were cleaned using `pandas.to_numeric()` with coercion to gracefully handle malformed entries, while timestamps were parsed into proper datetime formats to support future temporal analysis. Rows missing critical values were dropped to maintain dataset reliability.
 
-We engineered our primary regression target, \textit{views\_per\_subscriber}, defined as:
+To address duplicate video entries appearing at multiple timestamps, we deduplicated the dataset by keeping only the row with the highest view count for each `video_id`. After all cleaning, merging, and filtering steps, we obtained a final dataset of **5,905 videos**.
+
+We engineered our primary regression target, **views_per_subscriber**, defined as:
 
 \[
-\text{views\_per\_subscriber} = \frac{\text{views}}{\text{subscribers} + 1},
+\text{views\_per\_subscriber} = \frac{\text{views}}{\text{subscribers} + 1}
 \]
 
-to avoid division by zero. These values were clipped to the range $[0, 500]$ to reduce the impact of extreme outliers. For classification, we labeled videos in the top 25\% of \texttt{views\_per\_subscriber} as high-clickability (1) and all others as low-clickability (0).
+to avoid division by zero. These values were clipped to the range **[0, 500]** to reduce the impact of extreme outliers. For classification, we labeled videos in the top **25%** of `views_per_subscriber` as **high-clickability (1)** and all others as **low-clickability (0)**.
 
 Beyond cleaning, we engineered additional presentation- and language-based features derived from video titles, including:
 
-\begin{itemize}
-    \item \textbf{Channel size}: subscriber count
-    \item \textbf{Title structure}: \texttt{title\_length}, \texttt{word\_count}, \texttt{avg\_word\_len}, \texttt{caps\_ratio}
-    \item \textbf{Sentiment}: VADER polarity score
-    \item \textbf{Punctuation indicators}: presence of ``?'', ``!'', or digits
-\end{itemize}
+- **Channel size:** subscriber count  
+- **Title structure:** `title_length`, `word_count`, `avg_word_len`, `caps_ratio`  
+- **Sentiment:** VADER polarity score  
+- **Punctuation indicators:** presence of `"?"`, `"!"`, or digits  
 
-Finally, to capture deeper linguistic patterns, we applied TF--IDF vectorization to the video titles and extracted the 50 most informative components, which were incorporated as additional features for modeling.
+Finally, to capture deeper linguistic patterns, we applied **TF-IDF vectorization** to the video titles and extracted the **50 most informative components**, which were incorporated as additional features for modeling.
+
 
 
 ### Feature Engineering
