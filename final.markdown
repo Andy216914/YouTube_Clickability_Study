@@ -18,11 +18,11 @@ Our study address the question:
 *Can we predict the relative clickability of a YouTube video based on its title, thumbnail, and channel metadata?*
 
 We approached this in two ways:
-1. **Regression:** Predict a continuous *views per subscriber* metric to quantify engagement potential
-2. **Classification:** Categorize videos into *high* or *low* clickability classes based on whether they exceed the dataset's median performance
+1. **Regression Task**: Predict the continuous metric `views_per_subscriber` for a given video, representing the average engagement level. This metric is computed as total views divided by channel subscriber count, normalized to represent engagement potential independent of channel size.
+2. **Classification Task**: Predict whether a video achieves "high clickability"—defined as falling in the top 25% of the `views_per_subscriber` distribution. This binary classification task directly addresses the question of whether a video will be a "hit" or not.
 
 This dual approach allows us to measure both the absolute predictive accuracy of our models (via R<sup>2</sup> and error metrics) and their discriminative power in identifying standout titles (via precision, recall, and ROC-AUC).
-
+The overarching goal is to develop predictive models that can forecast these engagement metrics based solely on intrinsic video characteristics (thumbnail, title, description, tags, channel popularity), enabling content creators to optimize their uploads and platforms to predict which content will resonate with audiences.
 ## Methods {#Methods}
 ### Data and Preprocessing
 We used the YouTube Trending Videos dataset from Kaggle, which includes metadata for thousands of trending videos. We then preprocessed this data by converting some values to numeric types and dropping rows missing important values. Our original dataset didn't include a column for subscriber counts, so we found a nearly identical dataset, containing similar (but additional) information about the same videos from the same timeframe, and we merged that dataset's subscriber column into our original dataset. We then deduplicated it by removing rows dedicated to the same video at older timestamps, computed the *views per subscriber* value for each video, filtered out outliers, and log transformed these values. After cleaning and filtering, our processed dataset contained 5,742 videos.
