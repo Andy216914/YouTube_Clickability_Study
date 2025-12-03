@@ -264,9 +264,6 @@ Across both tasks, all nonlinear models (Random Forest, XGBoost, and HistGradien
 
 ---
 ### Deep neural networks
-![image](https://github.gatech.edu/user-attachments/assets/0ae0f1d4-f9a8-4d36-af9f-c075b233e2f6)
-![image](https://github.gatech.edu/user-attachments/assets/62153adc-6887-4b36-bbe2-e902a500dfdd)
-![image](https://github.gatech.edu/user-attachments/assets/8f1e6f35-33fb-4a94-80bd-374b363f7157)
 **Purpose:**  
 Deep neural networks (DNNs) were used to model the complex relationships between structured features, text features, and image features, enabling the system to learn how multiple modalities jointly influence video clickability.
 
@@ -283,9 +280,25 @@ A branch-and-fusion multimodal DNN was designed:
 - **Text:** Sentence-BERT semantic embeddings reduced to 128 dimensions with PCA.  
 - **Image:** CLIP or ResNet50 embeddings reduced with PCA, plus brightness, saturation, face count, and text density.
 
-**Training:**  
-Models were implemented in PyTorch using a 70/15/15 stratified train/validation/test split. Regularization included Dropout, BatchNorm, LeakyReLU, and weight decay. Optimization used Adam with early stopping based on validation performance.
+### **Training Setup**
+- **Framework:** PyTorch
+- **Dataset split:** 70 / 15 / 15 (train / validation / test), stratified for classification
+- **Regularization:** BatchNorm, LeakyReLU, Dropout (0.1), weight decay
+- **Optimizer:** Adam
+- **Early stopping:** triggered by validation AUC (classification) or validation RMSE (regression)
+- **Inputs:** structured features + text embeddings + image embeddings
+Two supervised models were trained independently:
 
+#### **Classification Model**
+- **Objective:** predict `high_clickability` (0/1)
+- **Metrics:** AUC, Accuracy, F1, Precision, Recall
+![image](https://github.gatech.edu/user-attachments/assets/0ae0f1d4-f9a8-4d36-af9f-c075b233e2f6)
+![image](https://github.gatech.edu/user-attachments/assets/62153adc-6887-4b36-bbe2-e902a500dfdd)
+
+#### **Regression Model**
+- **Objective:** predict `views_per_subscriber` (continuous)
+- **Metrics:** RMSE, MAE, R²
+![image](https://github.gatech.edu/user-attachments/assets/8f1e6f35-33fb-4a94-80bd-374b363f7157)
 
 
 
