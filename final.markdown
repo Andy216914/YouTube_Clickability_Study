@@ -59,21 +59,32 @@ Our feature engineering pipeline evolved substantially from the earlier version 
 #### **1. Structured Features (Traditional + Deep Features)**  
 We compute two sets of structured features:
 
-**Traditional Structured Features (8 dims)**  
-These capture linguistic style and channel-level properties:  
-- `title_length` (character count)  
-- `word_count` (number of words)  
-- `caps_ratio` (uppercase proportion)  
-- `avg_word_len`  
-- `has_question`, `has_exclamation`, `has_number`  
-- `sentiment_vader` (compound sentiment score)  
+### **Traditional Structured Features (8 dimensions)**  
+These handcrafted features capture text structure, punctuation, and basic emotional tone:
 
-**Deep Structured Features (13 dims)**  
-To enrich linguistic nuance, we add:  
-- `sentiment_tb` (TextBlob polarity)  
-- `readability` (Flesch Reading Ease)  
-- `emoji_count`  
-- `punctuation_intensity`
+- `title_length`: total number of characters in the title  
+- `word_count`: number of tokens  
+- `caps_ratio`: proportion of characters that are uppercase  
+- `avg_word_len`: average number of characters per word  
+- `has_question`: binary indicator for presence of `?`  
+- `has_exclamation`: binary indicator for presence of `!`  
+- `has_number`: binary indicator for presence of digits  
+- `sentiment_vader`: compound polarity score ∈ [-1, 1] computed via VADER sentiment analyzer  
+
+These features reflect findings from linguistics and marketing literature—punctuation, capitalization, and emotional cues influence user attention and engagement.
+
+---
+
+### **Deep Structured Features (13 dimensions)**  
+To capture deeper nuances in writing style and emotional intensity, we extend the feature set:
+
+- `sentiment_tb`: sentiment polarity computed via TextBlob  
+- `readability`: Flesch Reading Ease score (lower = harder to read)  
+- `emoji_count`: count of emojis representing emotional charge  
+- `punctuation_intensity`: ratio of punctuation marks to total characters  
+- plus all 8 traditional features above  
+
+These features quantify readability difficulty, affective expressiveness, style markers, and non-verbal emotional signals.
 
 These features capture emotional tone, urgency, writing complexity, and stylistic elements that may influence engagement.
 
