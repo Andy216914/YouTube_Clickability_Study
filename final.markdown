@@ -26,16 +26,27 @@ This dual approach allows us to measure both the absolute predictive accuracy of
 The overarching goal is to develop predictive models that can forecast these engagement metrics based solely on intrinsic video characteristics (thumbnail, title, description, tags, channel popularity), enabling content creators to optimize their uploads and platforms to predict which content will resonate with audiences.
 ## Methods {#Methods}
 ### Data and Preprocessing
-We used the YouTube Trending Videos dataset from Kaggle, which includes metadata for thousands of trending videos. We then preprocessed this data by converting some values to numeric types and dropping rows missing important values. Our original dataset didn't include a column for subscriber counts, so we found a nearly identical dataset, containing similar (but additional) information about the same videos from the same timeframe, and we merged that dataset's subscriber column into our original dataset. We then deduplicated it by removing rows dedicated to the same video at older timestamps, computed the *views per subscriber* value for each video, filtered out outliers, and log transformed these values. After cleaning and filtering, our processed dataset contained 5,742 videos.
+Our project began with raw YouTube data sourced from two closely related datasets: the main YouTube US Trending Videos dataset containing detailed video metadata, and a supplementary dataset providing channel subscriber counts. Because the original trending dataset did not include subscriber information, we merged the two sources using a left join on video_id, allowing us to retain all videos while bringing in subscriber data where available. Missing subscriber values were then imputed using channel-level averages, leveraging the assumption that a channel’s subscriber count remains relatively stable over short time periods.
+Before merging, both datasets underwent systematic preprocessing. We inspected data structure and selected core analytical columns such as video_id, title, channel_title, views, likes, dislikes, comment_count, publish_time, tags, description, and thumbnail_link. Numeric fields were cleaned using pandas.to_numeric() with coercion to gracefully handle malformed entries, while timestamps were parsed into proper datetime formats to enable any future temporal analysis. Rows missing critical values were dropped to maintain dataset reliability.
+To address duplicate video entries appearing at multiple timestamps, we deduplicated the dataset by keeping only the row with the highest view count for each video_id. After all cleaning, merging, and filtering steps, we obtained a final dataset of 5,905 videos.
+We engineered our primary regression target, views_per_subscriber, defined as:
+views_per_subscriber=viewssubscribers+1\text{views\_per\_subscriber} = \frac{\text{views}}{\text{subscribers} + 1}views_per_subscriber=subscribers+1views​
+to avoid division by zero. These values were clipped to the range [0,500][0, 500][0,500] to reduce the impact of extreme outliers. For classification, we labeled videos in the top 25% of views_per_subscriber as high-clickability (1) and all others as low-clickability (0).
+Beyond cleaning, we engineered additional presentation- and language-based features from video titles, including:
+Channel size: subscriber count
 
-Following preprocessing, additional features were engineered to capture presentation and linguistic characteristics of each video title. These numeric and categorical features included:
 
-* subscribers (channel size)
-* title_length, word_count, avg_word_len, caps_ratio
-* sentiment_vader (title sentiment polarity)
-* punctuation identifiers (presence of "?", "!", or digits)
+Title structure: title_length, word_count, avg_word_len, caps_ratio
 
-In addition, textual features were extracted using TF-IDF vectorization, capturing the 50 most informative components of terms from video titles. 
+
+Sentiment: VADER polarity score
+
+
+Punctuation indicators: presence of “?”, “!”, or digits
+
+
+Finally, to capture deeper linguistic patterns, we applied TF-IDF vectorization to titles and extracted the 50 most informative components, which were incorporated as additional features.
+
 
 ### Feature Engineering
 To standardize inputs across feature types:
