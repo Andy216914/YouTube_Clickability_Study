@@ -373,15 +373,6 @@ In addition, we identify three concrete next steps:
 
 ![image](https://github.gatech.edu/user-attachments/assets/d4a9adbb-d843-47dd-8285-574a8459027d)
 
-### Contribution Table
-
-| Name      | Final Contributions                                                                                          |
-|-----------|--------------------------------------------------------------------------------------------------------------|
-| Member 1  | Data cleaning and preprocessing, feature engineering for structured and TF-IDF text features, regression models and visualizations. |
-| Member 2  | Deep learning architecture design, Sentence-BERT and CLIP embedding pipelines, multimodal fusion experiments. |
-| Member 3  | Implementation and tuning of Random Forest, XGBoost, and HistGradientBoosting models, classification metrics, ROC analysis. |
-| Member 4  | Literature review, report writing and editing, website formatting, integration of midterm and final results, Gantt chart and documentation. |
-
 *(Replace “Member 1–4” with actual team member names and adjust responsibilities as appropriate.)*
 
 ---
