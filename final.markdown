@@ -18,8 +18,8 @@ Our study address the question:
 *Can we predict the relative clickability of a YouTube video based on its title, thumbnail, and channel metadata?*
 
 We approached this in two ways:
-1. **Regression Task**: Predict the continuous metric `views_per_subscriber` for a given video, representing the average engagement level. This metric is computed as total views divided by channel subscriber count, normalized to represent engagement potential independent of channel size.
-2. **Classification Task**: Predict whether a video achieves "high clickability"—defined as falling in the top 25% of the `views_per_subscriber` distribution. This binary classification task directly addresses the question of whether a video will be a "hit" or not.
+1. **Regression Task**: Predict the continuous metric views_per_subscriber for a given video, representing the average engagement level. This metric is computed as total views divided by channel subscriber count, normalized to represent engagement potential independent of channel size.
+2. **Classification Task**: Predict whether a video achieves "high clickability"—defined as falling in the top 25% of the views_per_subscriber distribution. This binary classification task directly addresses the question of whether a video will be a "hit" or not.
 
 This dual approach allows us to measure both the absolute predictive accuracy of our models (via R<sup>2</sup> and error metrics) and their discriminative power in identifying standout titles (via precision, recall, and ROC-AUC).
 
@@ -29,9 +29,9 @@ The overarching goal is to develop predictive models that can forecast these eng
 
 Our project began with raw YouTube data sourced from two closely related datasets: the main YouTube US Trending Videos dataset containing detailed video metadata, and a supplementary dataset providing channel subscriber counts. Because the original trending dataset did not include subscriber information, we merged the two sources using a left join on `video_id`, allowing us to retain all videos while bringing in subscriber data wherever available. Missing subscriber values were then imputed using channel-level averages, leveraging the assumption that a channel’s subscriber count remains relatively stable over short time periods.
 
-Before merging, both datasets underwent systematic preprocessing. We inspected the data structure and selected core analytical columns such as `video_id`, `title`, `channel_title`, `views`, `likes`, `dislikes`, `comment_count`, `publish_time`, `tags`, `description`, and `thumbnail_link`. Numeric fields were cleaned using `pandas.to_numeric()` with coercion to gracefully handle malformed entries, while timestamps were parsed into proper datetime formats to support future temporal analysis. Rows missing critical values were dropped to maintain dataset reliability.
+Before merging, both datasets underwent systematic preprocessing. We inspected the data structure and selected core analytical columns such as video_id, title, channel_title, views, likes, dislikes, comment_count, publish_time, tags, description, and thumbnail_link. Numeric fields were cleaned using pandas.to_numeric() with coercion to gracefully handle malformed entries, while timestamps were parsed into proper datetime formats to support future temporal analysis. Rows missing critical values were dropped to maintain dataset reliability.
 
-To address duplicate video entries appearing at multiple timestamps, we deduplicated the dataset by keeping only the row with the highest view count for each `video_id`. After all cleaning, merging, and filtering steps, we obtained a final dataset of **5,905 videos**.
+To address duplicate video entries appearing at multiple timestamps, we deduplicated the dataset by keeping only the row with the highest view count for each video_id. After all cleaning, merging, and filtering steps, we obtained a final dataset of **5,905 videos**.
 
 We engineered our primary regression target, **views_per_subscriber**, defined as:
 
