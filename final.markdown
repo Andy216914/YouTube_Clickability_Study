@@ -42,7 +42,7 @@ to avoid division by zero. These values were clipped to the range **[0, 500]** t
 Beyond cleaning, we engineered additional presentation- and language-based features derived from video titles, including:
 
 - **Channel size:** subscriber count  
-- **Title structure:** `title_length`, `word_count`, `avg_word_len`, `caps_ratio`  
+- **Title structure:** title_length, word_count, avg_word_len, caps_ratio  
 - **Sentiment:** VADER polarity score  
 - **Punctuation indicators:** presence of `"?"`, `"!"`, or digits  
 
