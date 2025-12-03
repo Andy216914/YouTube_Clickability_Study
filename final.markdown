@@ -312,6 +312,8 @@ Across models, the findings support our central hypothesis that title characteri
 
 ## Gantt Chart & Contribution Table: {#Contributions}
 [Click here -> Gantt Chart](https://docs.google.com/spreadsheets/d/1ks7QSZOliQQ410aY5oCGphUX07czt0Q8Edpbw5tmB1A/edit?usp=sharing)
+
+
 ![image](https://github.gatech.edu/user-attachments/assets/d4a9adbb-d843-47dd-8285-574a8459027d)
 
 
