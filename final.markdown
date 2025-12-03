@@ -248,9 +248,7 @@ Logistic Regression performed the weakest overall, with 76% accuracy and notably
 
 Overall, HistGradientBoosting provides the best balance for practical use, especially in scenarios where detecting as many true positives as possible is important. Random Forest is ideal when precision is more critical than recall, and Logistic Regression serves as a reasonable but less powerful baseline.
 
-![image](https://github.gatech.edu/user-attachments/assets/f187df5d-41b6-4a56-9634-976d09f0d980)
-![image](https://github.gatech.edu/user-attachments/assets/a314e276-6844-4ccc-8f4c-e68705f8da01)
-
+![image](https://github.gatech.edu/user-attachments/assets/e8eb14da-5391-43e8-a97b-d0436481648c)
 
 *Figure 5. ROC curve of the Random Forest classifier, showing strong discriminative ability (AUC ≈ 0.86).*
 
