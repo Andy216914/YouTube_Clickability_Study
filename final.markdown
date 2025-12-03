@@ -265,6 +265,7 @@ Across both tasks, all nonlinear models (Random Forest, XGBoost, and HistGradien
 ---
 ### Deep neural networks
 ![image](https://github.gatech.edu/user-attachments/assets/0ae0f1d4-f9a8-4d36-af9f-c075b233e2f6)
+![image](https://github.gatech.edu/user-attachments/assets/4308dde6-27f3-4996-bd51-b1f301b7e606)
 ![image](https://github.gatech.edu/user-attachments/assets/8f1e6f35-33fb-4a94-80bd-374b363f7157)
 **Purpose:**  
 Deep neural networks (DNNs) were used to model the complex relationships between structured features, text features, and image features, enabling the system to learn how multiple modalities jointly influence video clickability.
