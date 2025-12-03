@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /midterm/
+permalink: /final/
 ---
 {% include nav.html %}
 
