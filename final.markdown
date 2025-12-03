@@ -22,6 +22,7 @@ We approached this in two ways:
 2. **Classification Task**: Predict whether a video achieves "high clickability"—defined as falling in the top 25% of the `views_per_subscriber` distribution. This binary classification task directly addresses the question of whether a video will be a "hit" or not.
 
 This dual approach allows us to measure both the absolute predictive accuracy of our models (via R<sup>2</sup> and error metrics) and their discriminative power in identifying standout titles (via precision, recall, and ROC-AUC).
+
 The overarching goal is to develop predictive models that can forecast these engagement metrics based solely on intrinsic video characteristics (thumbnail, title, description, tags, channel popularity), enabling content creators to optimize their uploads and platforms to predict which content will resonate with audiences.
 ## Methods {#Methods}
 ### Data and Preprocessing
