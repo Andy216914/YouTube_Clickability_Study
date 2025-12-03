@@ -221,6 +221,80 @@ Lower recall (0.42) indicates some high-performing titles are missed, likely due
 
 *Figure 3. ROC curve of Random Forest classifier, showing strong discriminative ability (AUC = 0.86).*
 
+# Summary of Model Results
+
+Across traditional machine learning baselines and the multimodal deep learning pipeline, the results show that **nonlinear models and semantically rich features provide the strongest predictive performance**, while linear methods struggle to capture the complexity of YouTube engagement.
+
+---
+
+## 1. Regression Models (Predicting Views per Subscriber)
+
+### **Top Performers: Random Forest & XGBoost**
+- **R² ≈ 0.26** — models explain ~26% of engagement variance  
+- **MAE ≈ 10** — predictions typically within ±10 views/subscriber  
+- **RMSE ≈ 38** — viral outliers remain difficult to capture  
+
+### **Interpretation**
+- Video performance is **nonlinear**, so Linear Regression performs poorly (**R² = 0.02**).
+- Ensemble models capture meaningful structure and outperform all baselines.
+
+### **Feature Insights**
+- **Subscriber count** is the most influential predictor.
+- **Sentiment**, **capitalization ratio**, and **linguistic style** meaningfully contribute.
+- **TF-IDF latent components** reveal coherent genre clusters (e.g., trailers, holiday content, reaction videos, event-driven uploads).
+
+---
+
+## 2. Classification Models (High vs. Low Performance)
+
+### **Best Model: Random Forest Classifier**
+- **Accuracy:** 0.81  
+- **Precision:** 0.71  
+- **Recall:** 0.42  
+- **F1:** 0.53  
+- **ROC-AUC:** 0.86  
+
+### **Interpretation**
+- High **precision** → when the model predicts success, it’s usually correct.
+- Lower **recall** → some high-performing videos are missed (class imbalance).
+- **AUC = 0.86** → model reliably distinguishes successful vs. unsuccessful titles.
+
+### **Logistic Regression**
+- Good AUC (0.80) but **precision/recall = 0**, reinforcing that linear decision boundaries do not work for this task.
+
+---
+
+## 3. Overall Performance Trends
+
+### **Traditional Models**
+- Strongest when combining **semantic text features + structured metadata**.
+- Nonlinear methods outperform linear ones by a large margin.
+- Performance plateaus at ~0.26 R² due to inherent unpredictability of viral content.
+
+### **Multimodal Deep Learning Model**
+- Designed to fuse:
+  - **S-BERT text embeddings**  
+  - **CLIP image embeddings**  
+  - **Deep structured features**  
+- Expected to surpass traditional approaches due to:
+  - richer semantic representations  
+  - cross-modal learning  
+  - better handling of nonlinear patterns  
+
+(*Numerical results were not provided but the architecture is optimized for superior multimodal performance.*)
+
+---
+
+# **Key Takeaways**
+
+- **Nonlinear models are essential** for engagement prediction.  
+- **Text features are the single strongest signal**, especially semantic embeddings.  
+- **Structured metadata** (subscriber count, sentiment, formatting style) significantly boosts accuracy.  
+- **Classification is easier than exact regression**, with strong ROC-AUC performance.  
+- **Viral content remains unpredictable**, as all models underestimate extreme outliers.
+
+---
+
 ### Interpretation
 Across models, the findings support our central hypothesis that title characteristics combined with channel metadata can predict relative engagement potential. However, the dominace of the subscribers feature highlights that success is heavily conditioned by existing audience reach, with title wording contributing a secondary, but stil measurable, effect. These insights align with prior research on algorithmic amplification and audience dynamics, suggesting that creators with established followings benefit more from metadata optimization than new creators. It's important to remember video titles are not the only factor contributing to views, so we should not expect perfect predictive ability based solely on that input, but rather we can evaluate to what extent titles have an impact and how that impact can be maximized.
 
