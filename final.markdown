@@ -299,16 +299,11 @@ Across traditional machine learning baselines and the multimodal deep learning p
 Across models, the findings support our central hypothesis that title characteristics combined with channel metadata can predict relative engagement potential. However, the dominace of the subscribers feature highlights that success is heavily conditioned by existing audience reach, with title wording contributing a secondary, but stil measurable, effect. These insights align with prior research on algorithmic amplification and audience dynamics, suggesting that creators with established followings benefit more from metadata optimization than new creators. It's important to remember video titles are not the only factor contributing to views, so we should not expect perfect predictive ability based solely on that input, but rather we can evaluate to what extent titles have an impact and how that impact can be maximized.
 
 ## Next Steps
-1. Integrate Thumbnail Analysis
-  * Extract visual embeddings and metadata (brightness, saturation, text density, and facial presence) from thumbnails
-  * Use CNNs or transfer learning models (e.g., ResNet, EfficientNet) to generate thumbnail feature vectors
-  * Combine these with existing textual and structured features to train multimodal models
-3. Hyperparameter Optimization
-  * Conduct grid search for Random Forest and XGBoost parameters to improve recall and generalization
-4. Model Explainability
-  * Use SHAP values to interpret how both textual and visual features contribute to predicted clickability
-5. Cross-Validation and Robustness
-  * Perform k-fold validation to evluate consistency across data splits and reduce overfitting risk
+
+Looking ahead, several possible directions could further strengthen the system’s predictive capabilities. One natural extension would be to incorporate thumbnail information—such as CLIP-based embeddings and visual metadata—to create a more complete multimodal model that mirrors how viewers process both text and imagery. Architectural adjustments, including expanded fusion layers or attention-based interactions, could also be explored to enhance the model’s ability to learn richer cross-modal representations.
+
+Additional improvements could come from experimenting with hyperparameter tuning for ensemble models or adopting more robust evaluation strategies like stratified k-fold cross-validation. Finally, incorporating interpretability tools—such as SHAP for textual and structured features or CLIP-based attribution for thumbnail analysis—may offer valuable insights into why specific titles or thumbnails drive higher engagement. These potential steps would help guide future development and refinement of the system.
+
 
 ## Gantt Chart & Contribution Table: {#Contributions}
 [Click here -> Gantt Chart](https://docs.google.com/spreadsheets/d/1ks7QSZOliQQ410aY5oCGphUX07czt0Q8Edpbw5tmB1A/edit?usp=sharing)
