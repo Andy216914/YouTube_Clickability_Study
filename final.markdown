@@ -35,9 +35,7 @@ To address duplicate video entries appearing at multiple timestamps, we deduplic
 
 We engineered our primary regression target, **views_per_subscriber**, defined as:
 
-$$
-views\_per\_subscriber = \frac{views}{subscribers + 1}
-$$
+<p align="center"><code>views_per_subscriber = views / (subscribers + 1)</code></p>
 
 to avoid division by zero. These values were clipped to the range **[0, 500]** to reduce the impact of extreme outliers. For classification, we labeled videos in the top **25%** of `views_per_subscriber` as **high-clickability (1)** and all others as **low-clickability (0)**.
 
