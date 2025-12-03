@@ -19,7 +19,7 @@ Our study addresses the question:
 
 We approached this in two ways:
 1. **Regression Task**: Predict the continuous metric `views_per_subscriber` for a given video, representing the average engagement level. This metric is computed as total views divided by channel subscriber count, normalized to represent engagement potential independent of channel size.
-2. **Classification Task**: Predict whether a video achieves "high clickability"—defined as falling in the top 25% of the `views_per_subscriber` distribution. This binary classification task directly addresses the question of whether a video will be a "hit" or not.
+2. **Classification Task**: Predict whether a video achieves "high clickability," defined as falling in the top 25% of the `views_per_subscriber` distribution. This binary classification task directly addresses the question of whether a video will be a "hit" or not.
 
 This dual approach allows us to measure both the absolute predictive accuracy of our models (via R<sup>2</sup> and error metrics) and their discriminative power in identifying standout titles (via precision, recall, and ROC-AUC).
 
@@ -70,7 +70,7 @@ These handcrafted features capture text structure, punctuation, and basic emotio
 - `has_number`: binary indicator for presence of digits  
 - `sentiment_vader`: compound polarity score ∈ [-1, 1] computed via VADER sentiment analyzer  
 
-These features reflect findings from linguistics and marketing literature—punctuation, capitalization, and emotional cues influence user attention and engagement.
+These features reflect findings from linguistics and marketing literature: punctuation, capitalization, and emotional cues influence user attention and engagement.
 
 ---
 
@@ -102,7 +102,7 @@ This preserves 85–90% of variance while remaining computationally efficient.
 - Encode text using the `all-mpnet-base-v2` Sentence-BERT model  
 - Produce 768-dimensional semantic embeddings  
 - Reduce to 128 dimensions using PCA (>95% variance retained)  
-Sentence-BERT embeddings capture deep semantic structure, synonym similarity, sentiment flow, and topic coherence—far beyond TF-IDF capabilities.
+Sentence-BERT embeddings capture deep semantic structure, synonym similarity, sentiment flow, and topic coherence, far beyond TF-IDF capabilities.
 
 ---
 
@@ -199,7 +199,7 @@ We selected these models to balance interpretability, nonlinearity, and performa
 {% endcapture %}
 {{ m | markdownify }}
 
-Both the Random Forest and XGBoost Regressors achieved an R<sup>2</sup> of approximately 0.26, explaining over one-quarter of the variance in video clickability—a strong result given the inherent noise and many external factors influencing YouTube video viewership. 
+Both the Random Forest and XGBoost Regressors achieved an R<sup>2</sup> of approximately 0.26, explaining over one-quarter of the variance in video clickability, which is a strong result given the inherent noise and many external factors influencing YouTube video viewership. 
 
 The MAE of ~10 views per subscriber indicates reasonably tight predictions around actual performance, though the RMSE reveals that extremely viral outliers are still hard to capture.
 
@@ -347,7 +347,7 @@ In summary, nonlinear tree-based methods dramatically outperform the linear base
 
 ### Limitations
 
-There are several limitations in our current modeling pipeline. First, even the best regression models struggle with highly viral videos, producing systematic underestimation in the extreme right tail of the distribution. Second, metadata alone cannot fully determine engagement—external factors such as trends, timing, recommendation dynamics, and community preferences introduce irreducible noise. Third, thumbnail image quality varies widely across videos, and some missing or low-resolution thumbnails reduce signal strength. Finally, all models were trained on a trending dataset, which may not generalize perfectly to non-trending uploads.
+There are several limitations in our current modeling pipeline. First, even the best regression models struggle with highly viral videos, producing systematic underestimation in the extreme right tail of the distribution. Second, metadata alone cannot fully determine engagement; external factors such as trends, timing, recommendation dynamics, and community preferences introduce irreducible noise. Third, thumbnail image quality varies widely across videos, and some missing or low-resolution thumbnails reduce signal strength. Finally, all models were trained on a trending dataset, which may not generalize perfectly to non-trending uploads.
 
 ---
 
@@ -356,9 +356,9 @@ Across models, the findings support our central hypothesis that title characteri
 
 ## Next Steps
 
-Looking ahead, several possible directions could further strengthen the system’s predictive capabilities. One natural extension would be to incorporate more detailed thumbnail information—such as higher-resolution crops, face localization, and text region extraction—to create a more complete multimodal model that mirrors how viewers process both text and imagery. Architectural adjustments, including expanded fusion layers or attention-based interactions, could also be explored to enhance the model’s ability to learn richer cross-modal representations.
+Looking ahead, several possible directions could further strengthen the system’s predictive capabilities. One natural extension would be to incorporate more detailed thumbnail information, such as higher-resolution crops, face localization, and text region extraction, to create a more complete multimodal model that mirrors how viewers process both text and imagery. Architectural adjustments, including expanded fusion layers or attention-based interactions, could also be explored to enhance the model’s ability to learn richer cross-modal representations.
 
-Additional improvements could come from experimenting with hyperparameter tuning for ensemble models or adopting more robust evaluation strategies like stratified k-fold cross-validation. Finally, incorporating interpretability tools—such as SHAP for textual and structured features or CLIP-based attribution for thumbnail analysis—may offer valuable insights into why specific titles or thumbnails drive higher engagement. These potential steps would help guide future development and refinement of the system.
+Additional improvements could come from experimenting with hyperparameter tuning for ensemble models or adopting more robust evaluation strategies like stratified k-fold cross-validation. Finally, incorporating interpretability tools, such as SHAP for textual and structured features or CLIP-based attribution for thumbnail analysis, may offer valuable insights into why specific titles or thumbnails drive higher engagement. These potential steps would help guide future development and refinement of the system.
 
 In addition, we identify three concrete next steps:
 
@@ -372,8 +372,6 @@ In addition, we identify three concrete next steps:
 [Click here -> Gantt Chart](https://docs.google.com/spreadsheets/d/1ks7QSZOliQQ410aY5oCGphUX07czt0Q8Edpbw5tmB1A/edit?usp=sharing)
 
 ![image](https://github.gatech.edu/user-attachments/assets/d4a9adbb-d843-47dd-8285-574a8459027d)
-
-*(Replace “Member 1–4” with actual team member names and adjust responsibilities as appropriate.)*
 
 ---
 
