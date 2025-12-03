@@ -252,9 +252,15 @@ Overall, HistGradientBoosting provides the best balance for practical use, espec
 
 *Figure 5. ROC curve of the Random Forest classifier, showing strong discriminative ability (AUC ≈ 0.86).*
 
-Across both tasks, all nonlinear models (Random Forest, XGBoost, and HistGradientBoosting) substantially outperform linear baselines. Random Forest provides the best interpretability through feature importance, XGBoost provides slightly better regression accuracy, and HistGradientBoosting provides the strongest and most balanced classification performance. Linear methods fail to capture nonlinear linguistic patterns, while tree-based ensembles consistently model these interactions. The deep multimodal network is expected to outperform all traditional models once fully trained due to richer semantic and visual representation learning.
+![image](https://github.gatech.edu/user-attachments/assets/529b9a59-61de-4369-b1b9-a5f95d6f305a)
 
-> *Note:* Due to limited time and compute during final training runs, we focused our visualizations on Random Forest (ROC curve) and the regression models. Based on its superior F1 and balanced precision–recall profile, we expect the ROC curve for HistGradientBoosting to closely match or slightly exceed the Random Forest curve.
+*Figure 6. ROC curve of the Linear Regression
+
+![image](https://github.gatech.edu/user-attachments/assets/93f3c7c9-395a-4c7f-af63-4b1f5806e442)
+
+*Figure 6. ROC curve of the Histogram based gradient boosting classifier
+
+Across both tasks, all nonlinear models (Random Forest, XGBoost, and HistGradientBoosting) substantially outperform linear baselines. Random Forest provides the best interpretability through feature importance, XGBoost provides slightly better regression accuracy, and HistGradientBoosting provides the strongest and most balanced classification performance. Linear methods fail to capture nonlinear linguistic patterns, while tree-based ensembles consistently model these interactions. The deep multimodal network is expected to outperform all traditional models once fully trained due to richer semantic and visual representation learning.
 
 ---
 
